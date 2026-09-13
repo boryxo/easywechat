@@ -301,6 +301,6 @@ class Encryptor
      */
     private function getRandomStr()
     {
-        return substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz'), 0, 16);
+        return \EasyWeChat\Support\Str::random(16);
     }
 }

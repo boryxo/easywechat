@@ -89,7 +89,7 @@ class XML
      */
     public static function cdata($string)
     {
-        return sprintf('<![CDATA[%s]]>', $string);
+        return sprintf('<![CDATA[%s]]>', str_replace(']]>', ']]]]><![CDATA[>', $string));
     }
 
     /**
@@ -135,9 +135,11 @@ class XML
      */
     protected static function data2Xml($data, $item = 'item', $id = 'id')
     {
-        $xml = $attr = '';
+        $xml = '';
 
         foreach ($data as $key => $val) {
+            $attr = '';
+
             if (is_numeric($key)) {
                 $id && $attr = " {$id}=\"{$key}\"";
                 $key = $item;

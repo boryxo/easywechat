@@ -485,7 +485,7 @@ class API extends AbstractAPI
         $params['appid'] = $this->merchant->app_id;
         $params['mch_id'] = $this->merchant->merchant_id;
         $params['device_info'] = $this->merchant->device_info;
-        $params['nonce_str'] = uniqid();
+        $params['nonce_str'] = \EasyWeChat\Support\Str::random(32);
         $params = array_filter($params);
 
         $params['sign'] = generate_sign($params, $this->getSignkey($api), 'md5');

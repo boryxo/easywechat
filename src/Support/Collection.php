@@ -353,7 +353,7 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate, JsonSeria
      */
     public static function __set_state($properties)
     {
-        return new static($properties);
+        return new static(isset($properties['items']) && is_array($properties['items']) ? $properties['items'] : []);
     }
 
     /**
