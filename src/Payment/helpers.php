@@ -36,7 +36,20 @@ function generate_sign(array $attributes, $key, $encryptMethod = 'md5')
 
     $attributes['key'] = $key;
 
-    return strtoupper(call_user_func_array($encryptMethod, [urldecode(http_build_query($attributes))]));
+    $string = urldecode(http_build_query($attributes));
+
+    switch (strtolower($encryptMethod)) {
+        case 'md5':
+            return strtoupper(md5($string));
+        case 'sha256':
+            return strtoupper(hash('sha256', $string));
+        case 'hmac-sha256':
+            unset($attributes['key']);
+
+            return strtoupper(hash_hmac('sha256', urldecode(http_build_query($attributes)), $key));
+        default:
+            throw new \InvalidArgumentException(sprintf('Unsupported sign method "%s".', $encryptMethod));
+    }
 }
 
 /**

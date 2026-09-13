@@ -84,7 +84,7 @@ class Payment
             'appid' => $this->merchant->app_id,
             'mch_id' => $this->merchant->merchant_id,
             'time_stamp' => time(),
-            'nonce_str' => uniqid(),
+            'nonce_str' => \EasyWeChat\Support\Str::random(32),
             'product_id' => $productId,
         ];
 
@@ -182,7 +182,7 @@ class Payment
                 'return_code' => 'SUCCESS',
                 'appid' => $this->merchant->app_id,
                 'mch_id' => $this->merchant->merchant_id,
-                'nonce_str' => uniqid(),
+                'nonce_str' => \EasyWeChat\Support\Str::random(32),
                 'prepay_id' => strval($prepayId),
                 'result_code' => 'SUCCESS',
             ];
@@ -219,7 +219,7 @@ class Payment
         $params = [
             'appId' => $this->merchant->app_id,
             'timeStamp' => strval(time()),
-            'nonceStr' => uniqid(),
+            'nonceStr' => \EasyWeChat\Support\Str::random(32),
             'package' => "prepay_id=$prepayId",
             'signType' => 'MD5',
         ];
@@ -263,7 +263,7 @@ class Payment
             'appid' => $this->merchant->app_id,
             'partnerid' => $this->merchant->merchant_id,
             'prepayid' => $prepayId,
-            'noncestr' => uniqid(),
+            'noncestr' => \EasyWeChat\Support\Str::random(32),
             'timestamp' => time(),
             'package' => 'Sign=WXPay',
         ];
@@ -291,7 +291,7 @@ class Payment
             'appId' => $this->merchant->app_id,
             'scope' => 'jsapi_address',
             'timeStamp' => strval(time()),
-            'nonceStr' => uniqid(),
+            'nonceStr' => \EasyWeChat\Support\Str::random(32),
             'signType' => 'SHA1',
         ];
 

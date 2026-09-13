@@ -399,7 +399,7 @@ class Guard
 
         $messageType = $message->get('msg_type', $message->get('MsgType'));
 
-        $type = $this->messageTypeMapping[$messageType];
+        $type = $this->messageTypeMapping[$messageType] ?? 0;
 
         $response = null;
 
