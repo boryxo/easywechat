@@ -37,11 +37,8 @@ class XML
      */
     public static function parse($xml)
     {
-        $backup = libxml_disable_entity_loader(true);
-
+        // PHP 8.0+ libxml 默认禁用外部实体加载，原 libxml_disable_entity_loader() 调用已废弃移除
         $result = self::normalize(simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_COMPACT | LIBXML_NOCDATA | LIBXML_NOBLANKS));
-
-        libxml_disable_entity_loader($backup);
 
         return $result;
     }

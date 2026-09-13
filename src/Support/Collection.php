@@ -351,9 +351,9 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate, JsonSeria
      *
      * @return array
      */
-    public function __set_state()
+    public static function __set_state($properties)
     {
-        return $this->all();
+        return new static($properties);
     }
 
     /**
